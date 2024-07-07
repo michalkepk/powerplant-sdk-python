@@ -1,0 +1,16 @@
+name: PR check
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  check-pr:
+    runs-on: ubuntu-latest
+    env:
+      INTERNAL_ACCESS_TOKEN: ${{ secrets.INTERNAL_ACCESS_TOKEN }}
+    steps:
+      - name: Check PR title
+        id: check_title
+        run: |
+          echo ${{ github.event.pull_request.title }}
